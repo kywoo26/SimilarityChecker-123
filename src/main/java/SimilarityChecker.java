@@ -4,10 +4,10 @@ public class SimilarityChecker {
             throw new IllegalArgumentException();
         }
 
-        return getScore(s1, s2);
+        return calcScoreForAlpha(s1, s2);
     }
 
-    private int getScore(String s1, String s2) {
+    private int calcScoreForAlpha(String s1, String s2) {
         int totalCount = 0;
         int sameCount = 0;
 
