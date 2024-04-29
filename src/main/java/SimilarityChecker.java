@@ -4,6 +4,10 @@ public class SimilarityChecker {
             throw new IllegalArgumentException();
         }
 
+        if (s1.length() == s2.length()) {
+            return 60;
+        }
+
         return 0;
     }
 
