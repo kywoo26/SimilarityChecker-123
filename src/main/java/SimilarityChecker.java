@@ -4,16 +4,39 @@ public class SimilarityChecker {
             throw new IllegalArgumentException();
         }
 
-        if (s1.length() == s2.length()) {
+        if (isSameLength(s1, s2)) {
             return 60;
         } else {
-            if (s1.length() >= s2.length() * 2 ||
-                    s1.length() * 2 <= s2.length()) {
+            if (isGreaterThanEqualToDoubleLength(s1, s2)) {
                 return 0;
+            } else {
+                return getPartialScore(s1, s2);
             }
         }
+    }
 
-        return -1;
+    private int getPartialScore(String s1, String s2) {
+        int longLength;
+        int shortLength;
+
+        if (s1.length() > s2.length()) {
+            longLength = s1.length();
+            shortLength = s2.length();
+        } else {
+            longLength = s2.length();
+            shortLength = s1.length();
+        }
+
+        return (int) ((1 - (longLength - shortLength) / (double) shortLength) * 60);
+    }
+
+    private boolean isGreaterThanEqualToDoubleLength(String s1, String s2) {
+        return s1.length() >= s2.length() * 2 ||
+                s1.length() * 2 <= s2.length();
+    }
+
+    private boolean isSameLength(String s1, String s2) {
+        return s1.length() == s2.length();
     }
 
     private boolean isNullOrEmpty(String str) {

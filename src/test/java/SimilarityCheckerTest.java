@@ -30,7 +30,7 @@ class SimilarityCheckerTest {
         int score = similarityChecker.getScoreForLength("ASD", "DSA");
         assertThat(score).isEqualTo(60);
 
-        similarityChecker.getScoreForLength("aaaa", "bbbb");
+        score = similarityChecker.getScoreForLength("aaaa", "bbbb");
         assertThat(score).isEqualTo(60);
     }
 
@@ -41,6 +41,15 @@ class SimilarityCheckerTest {
 
         score = similarityChecker.getScoreForLength("BBB", "A");
         assertThat(score).isZero();
+    }
+
+    @Test
+    void testWhenLengthIsLessThanDouble() {
+        int score = similarityChecker.getScoreForLength("AAABB", "BAA");
+        assertThat(score).isEqualTo(20);
+
+        score = similarityChecker.getScoreForLength("AA", "AAE");
+        assertThat(score).isEqualTo(30);
     }
 
     private void assertNullOrEmpty(String s1, String s2) {
