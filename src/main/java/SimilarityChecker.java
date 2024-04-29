@@ -4,18 +4,15 @@ public class SimilarityChecker {
             throw new IllegalArgumentException();
         }
 
-        if (isSameLength(s1, s2)) {
-            return 60;
+        if (isGreaterThanEqualToDoubleLength(s1, s2)) {
+            return 0;
         } else {
-            if (isGreaterThanEqualToDoubleLength(s1, s2)) {
-                return 0;
-            } else {
-                return getPartialScore(s1, s2);
-            }
+            return calcScoreForLength(s1, s2);
         }
+
     }
 
-    private int getPartialScore(String s1, String s2) {
+    private int calcScoreForLength(String s1, String s2) {
         int longLength;
         int shortLength;
 
@@ -33,10 +30,6 @@ public class SimilarityChecker {
     private boolean isGreaterThanEqualToDoubleLength(String s1, String s2) {
         return s1.length() >= s2.length() * 2 ||
                 s1.length() * 2 <= s2.length();
-    }
-
-    private boolean isSameLength(String s1, String s2) {
-        return s1.length() == s2.length();
     }
 
     private boolean isNullOrEmpty(String str) {

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SimilarityCheckerTest {
     private SimilarityChecker similarityChecker;
+    private int score;
 
     @BeforeEach
     void setUp() {
@@ -27,7 +28,7 @@ class SimilarityCheckerTest {
 
     @Test
     void testWhenLengthsAreSame() {
-        int score = similarityChecker.getScoreForLength("ASD", "DSA");
+        score = similarityChecker.getScoreForLength("ASD", "DSA");
         assertThat(score).isEqualTo(60);
 
         score = similarityChecker.getScoreForLength("aaaa", "bbbb");
@@ -36,7 +37,7 @@ class SimilarityCheckerTest {
 
     @Test
     void testWhenLengthIsGreaterThanOrEqualToDouble() {
-        int score = similarityChecker.getScoreForLength("A", "BB");
+        score = similarityChecker.getScoreForLength("A", "BB");
         assertThat(score).isZero();
 
         score = similarityChecker.getScoreForLength("BBB", "A");
@@ -45,7 +46,7 @@ class SimilarityCheckerTest {
 
     @Test
     void testWhenLengthIsLessThanDouble() {
-        int score = similarityChecker.getScoreForLength("AAABB", "BAA");
+        score = similarityChecker.getScoreForLength("AAABB", "BAA");
         assertThat(score).isEqualTo(20);
 
         score = similarityChecker.getScoreForLength("AA", "AAE");
