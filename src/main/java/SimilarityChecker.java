@@ -6,9 +6,14 @@ public class SimilarityChecker {
 
         if (s1.length() == s2.length()) {
             return 60;
+        } else {
+            if (s1.length() >= s2.length() * 2 ||
+                    s1.length() * 2 <= s2.length()) {
+                return 0;
+            }
         }
 
-        return 0;
+        return -1;
     }
 
     private boolean isNullOrEmpty(String str) {
